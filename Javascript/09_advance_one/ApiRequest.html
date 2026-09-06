@@ -42,6 +42,17 @@
 
     What is the onreadystatechange Event?
     - An event listener/callback property that triggers automatically every time the `readyState` changes (0 -> 1 -> 2 -> 3 -> 4).
+
+    XMLHttpRequest (XHR) vs. Modern fetch() API:
+    ---------------------------------------------------------------------------------------
+    Feature            | XMLHttpRequest (XHR)                 | fetch() API
+    ---------------------------------------------------------------------------------------
+    Syntax & Style     | Event-driven callbacks & readyState  | Promise-based (async/await, .then())
+    Execution Queue    | Standard Task/Callback Queue         | Microtask Queue (VIP priority)
+    Streaming Support  | Buffers entire response in memory    | Streams response body (ReadableStream)
+    Error Handling     | Dispatches 'onerror' for network     | Only rejects on network failure;
+                       | issues; requires manual status check | requires checking 'response.ok'
+    ---------------------------------------------------------------------------------------
     */
 
     // Step 1: Define the target API endpoint URL

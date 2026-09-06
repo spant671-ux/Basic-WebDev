@@ -127,23 +127,106 @@ async function consumedPromiseFive(){
 
 consumedPromiseFive()
 
-// ==================== 6. Fetching API Data with async / await & try...catch ====================
+// ==================== 6. The fetch() API: Deep Architecture & Inner Mechanics ====================
 
 /*
-fetch() API with async / await:
-- fetch(url) initiates a network request and returns a Promise that resolves to a Response object.
-- response.json() parses the response body text as JSON. This is also an asynchronous operation that returns a Promise, so it must also be awaited.
-- Wrapping with try...catch gracefully intercepts any network failures or exceptions.
+---------------------------------------------------------------------------------------
+WHAT IS THE fetch() API?
+---------------------------------------------------------------------------------------
+- fetch() is a modern, promise-based Web API available in all modern browsers and Node.js (v18+).
+- It is designed to perform asynchronous HTTP network requests (GET, POST, PUT, DELETE, etc.)
+  and acts as the modern successor to XMLHttpRequest (XHR).
+
+---------------------------------------------------------------------------------------
+HOW fetch() WORKS BEHIND THE SCENES (UNDER THE HOOD IN V8 & BROWSER ENGINES)
+---------------------------------------------------------------------------------------
+When fetch(resource, [options]) is invoked, two parallel mechanisms execute simultaneously:
+
+1. JAVASCRIPT ENGINE & MEMORY LAYER:
+   - Synchronously instantiates a Promise object in the 'pending' state.
+   - Allocates two internal arrays/handlers:
+     * onFulfilled[]: Queue of callbacks waiting for response resolution.
+     * onRejection[]: Queue of callbacks waiting for network failure.
+   - Returns this Promise object immediately to the main thread so synchronous execution never blocks.
+
+2. BROWSER WEB API & NETWORK SUBSYSTEM (C++ in Chromium / libuv in Node.js):
+   - Offloads the actual I/O network request to the browser's native network layer.
+   - Handles low-level operations: DNS resolution, TCP handshake, TLS/SSL encryption, and sending HTTP headers.
+   - When network response packets begin arriving, it fulfills the Promise through the engine's internal onFulfilled handler.
+
+---------------------------------------------------------------------------------------
+THE MICROTASK QUEUE (THE "VIP" PRIORITY QUEUE)
+---------------------------------------------------------------------------------------
+- Regular asynchronous timers/callbacks (setTimeout, setInterval, DOM event listeners)
+  are pushed to the standard Task / Macrotask Queue.
+- Promises created by fetch() resolve through the Microtask Queue (sometimes called the Promise / High Priority Queue).
+- In the Event Loop cycle, the Microtask Queue is always drained COMPLETELY before the engine picks up any task from the Macrotask Queue.
+- Example: If a setTimeout(..., 0) and a fast-resolving fetch() are initiated together,
+  the fetch() .then() or await continuation runs BEFORE the setTimeout callback!
+
+---------------------------------------------------------------------------------------
+THE TWO-PHASE RESOLUTION LIFECYCLE
+---------------------------------------------------------------------------------------
+1. Phase 1 (Header Arrival -> Promise Resolves):
+   - const response = await fetch(url) fulfills as soon as the HTTP headers arrive from the server (status code 200, 404, headers, etc.).
+   - IMPORTANT: At this initial point, the complete response body payload may NOT have finished streaming over the network yet!
+
+2. Phase 2 (Body Stream Parsing -> Second Promise Resolves):
+   - The response object is a ReadableStream.
+   - Calling response.json() (or response.text(), response.blob(), response.formData(), response.arrayBuffer())
+     returns a SECOND Promise.
+   - This second Promise reads the incoming network byte stream to completion and parses it into a native JavaScript data structure.
+   - NOTE: Body streams can only be read ONCE! Attempting await response.json() followed by await response.text() on the same response will throw: "TypeError: body stream already read".
+
+---------------------------------------------------------------------------------------
+THE CRITICAL 404 / 500 STATUS CODE GOTCHA (HTTP Errors vs. Network Errors)
+---------------------------------------------------------------------------------------
+- A fetch() Promise ONLY rejects on true network-level failures:
+  * User is offline / disconnected from network.
+  * DNS resolution failed (domain does not exist).
+  * CORS security policy blocked the request in the browser.
+  * Request was explicitly aborted using an AbortController.
+- If the server answers with HTTP status 404 Not Found, 401 Unauthorized, 403 Forbidden,
+  or 500 Internal Server Error, fetch() DOES NOT REJECT! It resolves successfully.
+- WHY? Because as far as the browser's HTTP networking stack is concerned, the HTTP conversation completed and the server responded.
+- BEST PRACTICE: Always check response.ok (which evaluates to true if response.status is between 200 and 299).
+
+---------------------------------------------------------------------------------------
+CONFIGURING HTTP REQUEST OPTIONS (method, headers, body)
+---------------------------------------------------------------------------------------
+fetch('https://api.example.com/data', {
+    method: 'POST', // 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer <token>'
+    },
+    body: JSON.stringify({ name: 'Sans', role: 'developer' })
+})
 */
+
+// ==================== 6A. Fetching API Data with async / await & try...catch ====================
+
 async function getAllUsers(){
     try {
-        // Await the network call
+        // Step 1: Initiate network request and await the Response headers
         const response = await fetch('https://jsonplaceholder.typicode.com/users')
-        // Await parsing the response stream into JSON
+
+        // Step 2: Manually check for HTTP errors (404, 500, etc.)
+        // response.ok is a boolean flag: true if status is 200-299, false otherwise
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status} (${response.statusText})`);
+        }
+
+        // Useful Response object metadata:
+        // console.log("Status Code:", response.status);       // e.g. 200
+        // console.log("Status Message:", response.statusText); // e.g. "OK"
+        // console.log("Headers:", response.headers.get('content-type')); // e.g. "application/json; charset=utf-8"
+
+        // Step 3: Await streaming & parsing the response body as JSON
         const data = await response.json()
         console.log(data);
     } catch(error) {
-        // Catches network errors or parsing exceptions
+        // Catches both network errors (DNS, offline) and any error thrown above (e.g. !response.ok)
         console.log("E: ", error);
     }
 }
@@ -153,12 +236,18 @@ getAllUsers()
 // ==================== 7. Fetching API Data with .then() / .catch() Chaining ====================
 
 /*
-The fetch() Promise Behavior:
-- A fetch() Promise only rejects when a network failure occurs (e.g., DNS lookup failure, offline).
-- An HTTP error status (like 404 or 500) does NOT reject the fetch promise; it resolves normally with response.ok set to false.
+Chaining fetch() with Promises:
+- First .then(response) receives the Response object once headers arrive.
+- Returning response.json() returns a new Promise representing the parsed payload.
+- Second .then(data) receives the finalized, parsed JavaScript data.
+- .catch(error) intercepts network rejections or errors thrown in either .then() step.
 */
 fetch('https://jsonplaceholder.typicode.com/users')
 .then((response) => {
+    // Check if the HTTP status is within the 200-299 range
+    if (!response.ok) {
+        throw new Error(`Network response was not ok, status: ${response.status}`);
+    }
     // Returns a Promise resolving with the parsed JSON data
     return response.json()
 })
@@ -166,4 +255,7 @@ fetch('https://jsonplaceholder.typicode.com/users')
     // Logs the array of users retrieved from the API
     console.log(data);
 })
-.catch((error) => console.log(error))
+.catch((error) => {
+    // Catches network failures, CORS blocks, or errors thrown from inside .then()
+    console.log(error);
+})

@@ -1,6 +1,6 @@
 # 🌐 Learning Web Development
 
-A hands-on learning repository documenting my journey through web development—starting with HTML fundamentals and moving into CSS styling and JavaScript.
+A hands-on learning repository documenting my journey through web development—starting with HTML fundamentals and moving into CSS styling, JavaScript essentials, DOM manipulation, asynchronous programming, events, and real-world projects.
 
 ---
 
@@ -9,8 +9,8 @@ A hands-on learning repository documenting my journey through web development—
 Here is the directory structure of the topics covered in this repository:
 
 ```text
-Learning-WebDev/
-├── Learning HTML/
+Basic-WebDev/
+├── HTML/
 │   ├── 01_first_page/
 │   │   └── index.html
 │   ├── 02_inline_block/
@@ -40,7 +40,7 @@ Learning-WebDev/
 │   │   └── video.mp4
 │   └── 09_bookmark_manager/
 │       └── index.html
-├── Learning CSS/
+├── CSS/
 │   ├── 01_stylesheets_basics/
 │   │   ├── index.html
 │   │   └── style.css
@@ -53,9 +53,10 @@ Learning-WebDev/
 │   ├── 05_display_properties/
 │   │   └── index.html
 │   ├── 06_position_properties/
-│   │   ├── index.html
-│   │   └── [images]
+│   │   ├── 1.jpg, 2.jpg, 3.jpg, 4.jpg
+│   │   └── index.html
 │   ├── 07_float_clear_overflow/
+│   │   ├── 1.jpg, 2.jpg
 │   │   ├── index.html
 │   │   ├── one.html
 │   │   └── two.html
@@ -72,13 +73,13 @@ Learning-WebDev/
 │   │   ├── index.html
 │   │   └── styles.css
 │   ├── 11_media_queries_variables/
+│   │   ├── 1.jpg
 │   │   ├── index.html
 │   │   ├── one.html
-│   │   ├── two.html
-│   │   └── 1.jpg
+│   │   └── two.html
 │   ├── 12_shadow_effects/
-│   │   ├── index.html
-│   │   └── 1.jpg
+│   │   ├── 1.jpg
+│   │   └── index.html
 │   ├── 13_2d_transforms/
 │   │   ├── index.html
 │   │   └── style.css
@@ -89,7 +90,7 @@ Learning-WebDev/
 │   │   └── index.html
 │   └── 16_css_animations/
 │       └── index.html
-├── Learning Javascript/
+├── Javascript/
 │   ├── 01_basics/
 │   │   ├── 01_variables.js
 │   │   ├── 02_datatypes.js
@@ -98,7 +99,8 @@ Learning-WebDev/
 │   │   ├── 05_strings.js
 │   │   ├── 06_nums_and_maths.js
 │   │   ├── 07_datesInJs.js
-│   │   └── datatypes-summary.js
+│   │   ├── datatypes-summary.js
+│   │   └── new.js
 │   ├── 02_basics/
 │   │   ├── 01_arrays.js
 │   │   ├── 02_arrays.js
@@ -110,10 +112,39 @@ Learning-WebDev/
 │   │   ├── 03_arrow.js
 │   │   ├── 04_iife.js
 │   │   └── exec_context.js
-│   └── 04_control_flow/
-│       ├── ifelse.js
-│       ├── switch.js
-│       └── truthy.js
+│   ├── 04_control_flow/
+│   │   ├── ifelse.js
+│   │   ├── switch.js
+│   │   └── truthy.js
+│   ├── 05_iterations/
+│   │   ├── one.js
+│   │   ├── two.js
+│   │   ├── three.js
+│   │   ├── four.js
+│   │   ├── five.js
+│   │   ├── six.js
+│   │   ├── seven.js
+│   │   └── nine.js
+│   ├── 06_dom/
+│   │   ├── one.html
+│   │   ├── two.html
+│   │   ├── three.html
+│   │   └── four.html
+│   ├── 07_projects/
+│   │   ├── project 1/ (Color Scheme Switcher)
+│   │   ├── project 2/ (BMI Calculator)
+│   │   ├── project 3/ (Digital Clock)
+│   │   └── project 4/ (Guess the Number)
+│   ├── 08_events/
+│   │   ├── one.html (Event Listeners & Propagation)
+│   │   ├── two.html (setTimeout & clearTimeout)
+│   │   ├── three.html (setInterval & clearInterval)
+│   │   ├── Keyboard Check Project/
+│   │   └── Unlimited Colors Project/
+│   └── 09_advance_one/
+│       ├── ApiRequest.html (XMLHttpRequest & AJAX)
+│       ├── promise.html
+│       └── promises.js (Promises, Async/Await, Fetch)
 └── Projects/
     ├── Blogs Website Project using HTML, CSS/
     │   ├── index.htm
@@ -123,9 +154,11 @@ Learning-WebDev/
     │   ├── script.js
     │   └── styles.css
     ├── Cards Project using HTML, CSS/
-    │   ├── index.htm
-    │   └── style.css
+    │   ├── 1.jpg, icon.jpg, music.png
+    │   ├── index.htm, one.html
+    │   └── style.css, styles.css
     ├── Recipe Website using HTML, CSS/
+    │   ├── sweet.jpg, sweet 2.jpg
     │   ├── index.htm
     │   └── styles.css
     └── StudySync/
@@ -138,7 +171,7 @@ Learning-WebDev/
 
 ## 📘 Topics Covered
 
-### 1. 🏗️ HTML Basics (`/Learning HTML`)
+### 1. 🏗️ HTML Basics (`/HTML`)
 
 *   **01_first_page**: Basic structure of an HTML5 document (`<!DOCTYPE html>`, `<html>`, `<head>`, `<body>`, `<meta>` tags for character encoding and responsive viewports).
 *   **02_inline_block**: Deep-dive into HTML display behavior, contrasting block-level containers (like `<div>` and `<p>`) with inline containers (like `<span>` and `<a>`).
@@ -155,7 +188,7 @@ Learning-WebDev/
 
 ---
 
-### 2. 🎨 CSS Fundamentals (`/Learning CSS`)
+### 2. 🎨 CSS Fundamentals (`/CSS`)
 
 *   **01_stylesheets_basics**: Comparing the three approaches to styling web pages, and demonstrating fundamental CSS selector systems (Element, ID, Class, Grouping, Chained).
 *   **02_box_model**: Spacing properties—`width`, `height`, `border` (with `border-radius`), `padding`, and `margin`.
@@ -176,7 +209,7 @@ Learning-WebDev/
 
 ---
 
-### 3. ⚡ JavaScript Core (`/Learning Javascript`)
+### 3. ⚡ JavaScript Core (`/Javascript`)
 
 *   **01_basics**: Fundamentals of JavaScript:
     *   *01_variables.js*: Declaration keywords (`const`, `let`, `var`), scope leaking, and `console.table()`.
@@ -202,6 +235,34 @@ Learning-WebDev/
     *   *ifelse.js*: Conditional branching (`if`, `else if`, `else`), block scope in conditionals, implicit scope, comparison operators, and logical operators (`&&`, `||`).
     *   *switch.js*: Switch statement syntax, strict key matching, `break` keyword, preventing fall-through, and `default` cases.
     *   *truthy.js*: Truthy vs. Falsy values, verifying empty arrays (`.length === 0`) and empty objects (`Object.keys().length === 0`), Nullish Coalescing Operator (`??`), and Ternary Operator (`? :`).
+*   **05_iterations**: Loops and High-Order Iterators:
+    *   *one.js*: Classic `for` loops, iteration indexing, nested loop matrix logic, and loop termination with `break` and `continue`.
+    *   *two.js*: `while` loop condition evaluation and `do...while` loops (guaranteed initial execution).
+    *   *three.js*: `for...of` loop over Arrays, Strings, and `Map` objects with key-value destructuring `[key, value]`.
+    *   *four.js*: `for...in` loop specifically tailored for iterating through Object properties and array indices.
+    *   *five.js*: Array `.forEach()` iterator method, higher-order callback signatures `(item, index, arr)`, and processing arrays of objects.
+    *   *six.js*: Understanding why `forEach()` returns `undefined` and mastering conditional array querying using `.filter()`.
+    *   *seven.js*: Transforming array elements with `.map()` and chaining operations (`.map().map().filter()`).
+    *   *nine.js*: Array `.reduce()` accumulator patterns, initial value initialization, and calculating real-world shopping cart totals.
+*   **06_dom**: Document Object Model Manipulation:
+    *   *one.html*: DOM selector methods (`getElementById`, `getElementsByClassName`, `querySelector`, `querySelectorAll`), node text extraction (`innerText`, `textContent`, `innerHTML`), and converting HTMLCollections/NodeLists to Arrays.
+    *   *two.html*: DOM tree traversal and relationship exploration (`parentElement`, `children`, `firstElementChild`, `lastElementChild`, `nextElementSibling`), and inspecting child node lists.
+    *   *three.html*: Programmatically constructing and styling elements in memory with `document.createElement()`, setting attributes/classes, appending text nodes, and injecting into the DOM tree.
+    *   *four.html*: Modifying, replacing (`replaceWith()`), and removing (`remove()`) DOM nodes cleanly and efficiently.
+*   **07_projects**: Interactive JavaScript Mini-Projects:
+    *   *Project 1 (Color Scheme Switcher)*: Dynamically switches the canvas theme using click event listeners on interactive swatch buttons (`e.target.id`).
+    *   *Project 2 (BMI Calculator)*: Form-driven health utility with input parsing, preventing default submission (`e.preventDefault()`), and categorized BMI results.
+    *   *Project 3 (Digital Clock)*: Live digital timepiece updating dynamically on the DOM via `setInterval()` and `Date.toLocaleTimeString()`.
+    *   *Project 4 (Guess the Number)*: Number guessing challenge featuring random target generation (`Math.random()`), guess history tracking, remaining attempt limits, and round reset lifecycle.
+*   **08_events**: Browser Events, Propagation, & Timers:
+    *   *one.html*: Deep dive into `addEventListener`, the Event object (`e.target`, `e.type`, `e.clientX/Y`), event propagation (Event Bubbling vs. Event Capturing), `e.stopPropagation()`, and `e.preventDefault()`.
+    *   *two.html*: Asynchronous browser timers with `setTimeout()` and canceling pending timer execution using `clearTimeout()`.
+    *   *three.html*: Recurring interval timers with `setInterval()` and clean cancellation using `clearInterval()`.
+    *   *Keyboard Check Project*: Dynamic event inspector tracking `keydown` occurrences and dynamically rendering key attributes (`e.key`, `e.keyCode`, `e.code`) in an interactive table.
+    *   *Unlimited Colors Project*: Continuous random hex color engine shifting document background colors at regular intervals with Start/Stop controls and interval ID safety guards.
+*   **09_advance_one**: Asynchronous JavaScript, APIs, & Promises:
+    *   *ApiRequest.html*: AJAX architecture using `XMLHttpRequest` (XHR), tracking the 5 ready states (`UNSENT`, `OPENED`, `HEADERS_RECEIVED`, `LOADING`, `DONE`) via `onreadystatechange`, querying GitHub's public REST API, and converting payload strings with `JSON.parse()`.
+    *   *promises.js* & *promise.html*: Comprehensive guide to JavaScript Promises: `Pending`, `Fulfilled`, and `Rejected` states; creating promises with `new Promise(resolve, reject)`; consumption via `.then()`, `.catch()`, and `.finally()`; promise chaining; asynchronous functions using `async` / `await`; and modern `fetch()` API usage with `try...catch`.
 
 ---
 
@@ -209,7 +270,7 @@ Learning-WebDev/
 
 *   **Blogs Website Project using HTML, CSS**: A responsive blog website layout featuring a grid of blog cards with images, titles, descriptions, and author information. Built with semantic HTML and modern CSS Grid/Flexbox.
 *   **Recipe Website using HTML, CSS**: A structured recipe page showcasing ingredients, instructions, and images.
-*   **Cards Project using HTML, CSS**: A collection of stylized cards for displaying content.
+*   **Cards Project using HTML, CSS**: A collection of stylized cards for displaying content with audio/media integration.
 *   **Calculator using HTML, CSS and JS**: A functional calculator application with an interactive UI and basic mathematical calculations handled via JavaScript.
 *   **StudySync**: A fully responsive landing page for a seamless learning platform. Built using semantic HTML5 and vanilla CSS. Responsiveness is achieved purely through custom variables, CSS Flexbox, CSS Grid, and custom media queries.
 
@@ -222,14 +283,25 @@ Learning-WebDev/
    git clone https://github.com/spant671-ux/Learning-WebDev.git
    ```
 2. **Open the files:**
-   Since this is a client-side learning project, you don't need to run a server. Simply locate any `.html` file or `.js` file on your filesystem. You can open HTML files in your browser or run JavaScript files using Node.js:
-   ```bash
-   node "Learning Javascript/03_basics/01_functions.js"
-   ```
+   Since this is a client-side learning project, you don't need a heavy backend server.
+   - **HTML/CSS/DOM Projects**: Simply open any `.html` file directly in any modern browser (or use the VS Code *Live Server* extension).
+   - **JavaScript Core**: Run any individual script directly in your terminal using Node.js:
+     ```bash
+     node "Javascript/03_basics/01_functions.js"
+     node "Javascript/05_iterations/nine.js"
+     node "Javascript/09_advance_one/promises.js"
+     ```
 
 ---
 
 ## 🚀 Learning Progress
 
-*   **Completed:** HTML Basics 🏗️ & CSS Fundamentals 🎨
-*   **Currently Learning:** JavaScript Fundamentals & Control Flow ⚡
+*   **Completed:** 
+    *   HTML5 Basics & Semantic Layouts 🏗️
+    *   CSS3 Styling, Flexbox, Grids, & Animations 🎨
+    *   JavaScript Core (Variables, Datatypes, Functions, Execution Context, Scopes) ⚡
+    *   Control Flow & Iterations (for...of, for...in, forEach, map, filter, reduce) 🔄
+    *   DOM Manipulation & Event Handling (Bubbling, Capturing, Timers) 🖱️
+    *   Asynchronous JavaScript (XHR, AJAX, Promises, Async/Await, Fetch API) 🌐
+    *   Interactive Mini-Projects & Web Applications 🛠️
+*   **Next Steps:** Object-Oriented JavaScript (OOP, Prototypes, Classes) & Modern Frontend Frameworks 🚀

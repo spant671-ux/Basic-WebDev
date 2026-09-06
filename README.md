@@ -280,7 +280,7 @@ Basic-WebDev/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/spant671-ux/Learning-WebDev.git
+   git clone https://github.com/spant671-ux/Basic-WebDev.git
    ```
 2. **Open the files:**
    Since this is a client-side learning project, you don't need a heavy backend server.

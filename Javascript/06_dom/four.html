@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit and Remove DOM elements</title>
+</head>
+<body style="background-color: #212121; color: #fff">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    // Approach 1: Un-optimized element creation (using innerHTML causes full re-parse of container content):
+    function addLanguage(langName){
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage("python")
+    addLanguage("typescript")
+
+    // Approach 2: Optimized element creation (using createTextNode and appendChild avoids re-parsing existing elements):
+    function addOptiLanguage(langName){
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)   
+    }
+    addOptiLanguage("golang")
+
+
+    // ==================== Editing / Replacing DOM Elements ====================
+
+    // Selecting 2nd child element using CSS pseudo selector :nth-child(2):
+    const secondLang = document.querySelector("li:nth-child(2)")
+
+    // Option A: Quick replacement via innerHTML:
+    // secondLang.innerHTML = "mojo"
+
+    // Option B: Recommended replaceWith() method replacing the entire element node:
+    const newli = document.createElement('li')
+    newli.textContent = 'Mojo'
+    secondLang.replaceWith(newli)
+
+    // Option C: Replacing element using outerHTML string assignment:
+    const firstLang = document.querySelector('li:first-child')
+    firstLang.outerHTML = '<li>typescript</li>'
+
+
+    // ==================== Removing DOM Elements ====================
+
+    // Selecting the last child element using :last-child pseudo selector:
+    const lastLang = document.querySelector('li:last-child')
+
+    // Completely removing the element node from the DOM tree:
+    lastLang.remove()
+</script>
+</html>

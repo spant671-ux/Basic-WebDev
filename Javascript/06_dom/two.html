@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Relations - Parent Child Sibling</title>
+</head>
+<body style="background-color: #212121; color: white;">
+    <!-- Parent container holding child elements -->
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    // Selecting the parent element using querySelector
+    const parent = document.querySelector('.parent')
+
+    // Expected Output: Returns the parent element node <div class="parent">...</div>
+    // console.log(parent);
+
+    // parent.children returns an HTMLCollection of all direct child element nodes
+    // console.log(parent.children)
+
+    // Accessing a specific child element by index and reading its innerHTML:
+    // Expected Output: "Tuesday"
+    // console.log(parent.children[1].innerHTML)
+
+    // Iterating over HTMLCollection child elements using a standard for loop:
+    // for (let i = 0; i < parent.children.length; i++) {
+    //     console.log(parent.children[i].innerHTML);   
+    // }
+
+    // Styling a specific child element directly via parent.children index:
+    parent.children[1].style.color = 'orange'
+
+    // Traversing from Parent to First / Last Child Element Nodes:
+    // console.log(parent.firstElementChild); // Returns <div class="day">Monday</div>
+    // console.log(parent.lastElementChild);  // Returns <div class="day">Thursday</div>
+
+    // Selecting a single child element to traverse upward or sideways:
+    const dayOne = document.querySelector('.day')
+
+    // Expected Output: Returns first matching element <div class="day">Monday</div>
+    console.log(dayOne);
+
+    // Traversing from Child to Parent Element Node:
+    // Expected Output: Returns <div class="parent">...</div>
+    console.log(dayOne.parentElement);
+
+    // Traversing from Child to Next Sibling Element Node:
+    // Expected Output: Returns <div class="day">Tuesday</div>
+    console.log(dayOne.nextElementSibling);
+
+    // childNodes returns a NodeList of ALL DOM nodes (including line break text nodes, comment nodes, and element nodes):
+    // Note: Line breaks between HTML tags are recorded as Text Nodes in childNodes!
+    console.log("NODES: ", parent.childNodes);
+</script>
+</html>

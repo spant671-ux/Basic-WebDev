@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>DOM Learning</title>
+   <style>
+      .bg-black{
+         background-color: #212121;
+         color: #fff;
+      }
+   </style>
+</head>
+<body class="bg-black">
+   <div>
+      <!-- Main Heading element with unique ID 'title' and class 'heading' -->
+      <!-- Contains a hidden span tag to demonstrate textContent vs innerText -->
+      <h1 id="title" class="heading">DOM Learning on Learning Javascript <span style="display: none;">test text</span></h1>
+      <p>Lorem ipsum dolor sit amet.</p>
+      <h2>Lorem ipsum dolor sit.</h2>
+      <h2>Lorem ipsum dolor sit amet.</h2>
+      <h2>Lorem ipsum dolor sit.</h2>
+      <input type="password" name="" id="">
+
+      <ul>
+         <li class="list-item">one</li>
+         <li class="list-item">two</li>
+         <li class="list-item">three</li>
+         <li class="list-item">four</li>
+      </ul>
+   </div>
+</body>
+
+<!-- 
+==================== DOM Basics & Manipulation Reference ====================
+
+1. Element Selection Methods:
+   - document.getElementById('title')           : Selects single element by ID.
+   - document.getElementsByClassName('list-item'): Returns an HTMLCollection of elements with that class.
+   - document.querySelector('.heading')         : Returns FIRST element matching CSS selector.
+   - document.querySelectorAll('h2')            : Returns a NodeList of ALL matching elements.
+
+2. Text Property Differences:
+   - innerText   : Returns ONLY visible text content (respects CSS 'display: none').
+   - textContent : Returns ALL text content inside the node (includes hidden text like 'display: none').
+   - innerHTML   : Returns complete HTML markup inside the element (includes tags like <span>).
+
+3. Attribute Manipulation:
+   - element.getAttribute('class')              : Reads attribute value (e.g. "heading").
+   - element.setAttribute('class', 'heading bg'): Overwrites attribute value.
+
+4. Style Manipulation via JavaScript:
+   - const title = document.getElementById('title')
+   - title.style.backgroundColor = 'green'
+   - title.style.padding = '15px'
+   - title.style.borderRadius = '10px'
+
+5. Converting HTMLCollection to an Array:
+   - const tempClassList = document.getElementsByClassName('list-item')
+   - const myConvertedArray = Array.from(tempClassList)
+   - myConvertedArray.forEach((li) => { li.style.color = 'orange' })
+-->
+</html>

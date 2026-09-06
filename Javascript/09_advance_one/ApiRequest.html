@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;">
+    0	UNSENT	Client has been created. open() not called yet.
+1	OPENED	open() has been called.
+2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+3	LOADING	Downloading; responseText holds partial data.
+4	DONE	The operation is complete.
+</body>
+<script>
+    // ==================== API Request & XMLHttpRequest: Core Concepts ====================
+
+    /*
+    What is an API (Application Programming Interface)?
+    - An API acts as a bridge or messenger that allows two different software systems to communicate and share data with each other.
+    - Example: Web APIs allow client-side JavaScript in a browser to request data from a remote web server (like GitHub, Twitter, or weather services).
+
+    What is AJAX (Asynchronous JavaScript and XML)?
+    - A set of web development techniques that allows web pages to send and receive data asynchronously (in the background) without needing to reload the entire webpage.
+    - Although "XML" is in the name, modern APIs almost exclusively exchange data formatted as JSON (JavaScript Object Notation).
+
+    What is XMLHttpRequest (XHR)?
+    - XMLHttpRequest is a built-in browser object used to make HTTP/HTTPS requests to web servers behind the scenes.
+    - Historically introduced by Microsoft and standardized across all modern browsers before modern `fetch()` was created.
+    - It operates via event-driven callbacks (such as `onreadystatechange`, `onload`, `onerror`).
+
+    The 5 Ready States of XMLHttpRequest (xhr.readyState):
+    ---------------------------------------------------------------------------------------
+    Value | State Name         | Description
+    ---------------------------------------------------------------------------------------
+    0     | UNSENT             | Client created. open() has not been called yet.
+    1     | OPENED             | open() has been called. Request initialized.
+    2     | HEADERS_RECEIVED   | send() has been called. Response headers & status are available.
+    3     | LOADING            | Downloading response body; responseText holds partial data.
+    4     | DONE               | The entire network operation is complete; full response available.
+    ---------------------------------------------------------------------------------------
+
+    What is the onreadystatechange Event?
+    - An event listener/callback property that triggers automatically every time the `readyState` changes (0 -> 1 -> 2 -> 3 -> 4).
+    */
+
+    // Step 1: Define the target API endpoint URL
+    // This URL queries the public GitHub REST API for profile details of user 'spant671-ux'
+    const requestUrl = 'https://api.github.com/users/spant671-ux'
+
+    // Step 2: Create a new instance of the XMLHttpRequest constructor
+    // At this point, xhr.readyState === 0 (UNSENT)
+    const xhr = new XMLHttpRequest();
+
+    // Step 3: Initialize/configure the HTTP request
+    // Parameters:
+    // 1. Method: 'GET' (retrieves data), 'POST' (sends data), 'PUT' (updates), 'DELETE', etc.
+    // 2. URL: The target resource URL.
+    // 3. (Optional) async: Boolean flag, defaults to true (asynchronous).
+    // After open(), xhr.readyState transitions to 1 (OPENED)
+    xhr.open('GET', requestUrl)
+
+    // Step 4: Register an event handler to track changes in readyState
+    // This function executes every time the readyState value changes
+    xhr.onreadystatechange = function(){
+        // Log the current numeric readyState (e.g., 2, 3, 4) as progress occurs
+        console.log(xhr.readyState);
+
+        // Check if the request lifecycle is fully complete (readyState === 4 / DONE)
+        if (xhr.readyState === 4) {
+            // 'this.responseText' (or xhr.responseText) contains the raw string received from the server
+            // Convert the raw JSON string into a usable JavaScript object using JSON.parse()
+            const data = JSON.parse(this.responseText)
+
+            // Verify that 'data' is now a JavaScript 'object' rather than a 'string'
+            console.log(typeof data);
+
+            // Access and display specific properties from the parsed GitHub API response object
+            console.log(data.followers);
+        }
+    }
+
+    // Step 5: Send the request over the network to the server
+    // For GET requests, send() takes no arguments (or null).
+    // For POST requests, send(payload) passes request body data.
+    // Calling send() advances the state to 2 (HEADERS_RECEIVED), then 3 (LOADING), and finally 4 (DONE).
+    xhr.send();
+</script>
+</html>

@@ -15,7 +15,17 @@ const user = {
 // console.log(user.getUserDetails());
 // console.log(this);
 
-const promise1 = new Promise()
-const date = new Date()
+function User(username, loginCount, isLoggedIN){
+    this.username = username;
+    this.loginCount = loginCount;
+    this.isLoggedIN = isLoggedIN;
+
+    return this;
+}
+
+const userOne = new User('sans', 7, true);
+const userTwo = new User("santosh", 10, false)
+console.log(userOne);
+console.log(userTwo);
 
 

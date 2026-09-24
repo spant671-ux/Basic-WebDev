@@ -1,6 +1,27 @@
 # 🌐 Learning Web Development
 
-A hands-on learning repository documenting my journey through web development—starting with HTML fundamentals and moving into CSS styling, JavaScript essentials, DOM manipulation, asynchronous programming, events, and real-world projects.
+Welcome to my web development learning repository! This repo documents my journey mastering web development from the ground up — covering hands-on code projects, deep-dive experiments, and structured study notes across HTML, CSS, and JavaScript.
+
+---
+
+## 📚 Table of Contents
+- [📖 Study Notes & Handbooks](#-study-notes--handbooks)
+- [📂 Project Structure](#-project-structure)
+- [📘 Topics Covered](#-topics-covered)
+- [🛠️ How to Run Locally](#️-how-to-run-locally)
+- [🚀 Learning Progress](#-learning-progress)
+
+---
+
+## 📖 Study Notes & Handbooks
+
+All conceptual explanations, architectural breakdowns, rules, and reference notes are documented in dedicated handbooks for each section:
+
+| Section | Notes File | Topics Covered |
+|---|---|---|
+| 🏗️ HTML | 👉 **[HTML/NOTES.md](./HTML/NOTES.md)** | Document structure, inline/block elements, images/lists/tables, forms & inputs, IDs & classes, semantic tags, entities, multimedia, links & bookmarks |
+| 🎨 CSS | 👉 **[CSS/NOTES.md](./CSS/NOTES.md)** | Selectors & specificity, box model, units, typography & colors, display, position, float, flexbox, CSS grid, advanced grids, media queries & variables, shadows, 2D/3D transforms, transitions, keyframe animations |
+| ⚡ JavaScript | 👉 **[Javascript/NOTES.md](./Javascript/NOTES.md)** | Variables, data types & memory, type conversion, comparison, strings, numbers, dates, arrays, objects, functions, scopes, arrow functions, IIFE, execution context, control flow, loops, high-order array methods, DOM manipulation, events & propagation, timers, async/promises/fetch, OOP & classes |
 
 ---
 
@@ -11,6 +32,7 @@ Here is the directory structure of the topics covered in this repository:
 ```text
 Basic-WebDev/
 ├── HTML/
+│   ├── NOTES.md
 │   ├── 01_first_page/
 │   │   └── index.html
 │   ├── 02_inline_block/
@@ -41,6 +63,7 @@ Basic-WebDev/
 │   └── 09_bookmark_manager/
 │       └── index.html
 ├── CSS/
+│   ├── NOTES.md
 │   ├── 01_stylesheets_basics/
 │   │   ├── index.html
 │   │   └── style.css
@@ -91,6 +114,7 @@ Basic-WebDev/
 │   └── 16_css_animations/
 │       └── index.html
 ├── Javascript/
+│   ├── NOTES.md
 │   ├── 01_basics/
 │   │   ├── 01_variables.js
 │   │   ├── 02_datatypes.js
@@ -303,5 +327,6 @@ Basic-WebDev/
     *   Control Flow & Iterations (for...of, for...in, forEach, map, filter, reduce) 🔄
     *   DOM Manipulation & Event Handling (Bubbling, Capturing, Timers) 🖱️
     *   Asynchronous JavaScript (XHR, AJAX, Promises, Async/Await, Fetch API) 🌐
+    *   Object-Oriented JavaScript (OOP, Prototypes, Classes) 🧬
     *   Interactive Mini-Projects & Web Applications 🛠️
-*   **Next Steps:** Object-Oriented JavaScript (OOP, Prototypes, Classes) & Modern Frontend Frameworks 🚀
+*   **Next Steps:** Modern Frontend Frameworks (React) 🚀

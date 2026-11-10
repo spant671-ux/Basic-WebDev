@@ -16,7 +16,7 @@
 
             //requirement
             document.querySelector('button')
-            .addEventListener('click', this.handleClick)
+            .addEventListener('click', this.handleClick.bind(this))
         }
         handleClick(){
             console.log("Button Clicked ")

@@ -82,5 +82,3 @@ const addTwo = (num1, num2) => ({ username: "sans" });
 // Invoking addTwo(5, 8) returns the implicitly wrapped object:
 // Expected Output: { username: 'sans' }
 console.log(addTwo(5, 8));
-
-    
